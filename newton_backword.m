@@ -1,37 +1,41 @@
-x = [1891 1901 1911 1921 1931];
-y = [46 66 81 93 101];
-
-% Forward difference table
-n = length(y) - 1;
-dt(:,1) = x';
-dt(:,2) = y';
-for j = 3:length(y)+1
-    for i = 1:n
-        dt(i,j) = dt(i+1,j-1) - dt(i,j-1);
-    end
-    n = n - 1;
+all clear
+clear fig
+clear all
+x=[1891 1901 1911 1921 1931];
+y=[46 66 81 93 101];
+n=length(y);
+for l=1:n
+    d(l, 1)=x(l);
 end
+disp(d)
 
-% Interpolation using Newton's forward difference formula
-z = input('The interpolation value is=');
-h = x(2) - x(1);
-p = (z - x(1)) / h;
-sum = y(1);
-for i = 1:length(y)-1
-    prod = 1;
-    for j = 1:i
-        prod = prod * (p - j + 1);
-    end
-    sum = sum + (prod * dt(1, i+2)) / factorial(i);
+for i=1:n
+     d(i, 1)=y(i);
 end
-fprintf('The required interpolation value at %.2f is = %.6f\n', z, sum);
-
-% Plot graph
-plot(x, y, ':r', 'Linewidth', 2.5);
-hold on;
-plot(z, sum, 'ok', 'Linewidth', 1.5);
-grid on;
-xlabel('x-axis', 'Fontsize', 12);
-ylabel('y-axis', 'Fontsize', 12);
-legend('Graph of the given data', 'Interpolation value', 'Location', 'northwest');
-hold off;
+disp(d)
+for i=1:n-1
+    for j=1:i
+        d(i+1, j+1)=d(i+1, j)-d(i, j);
+    end
+end
+fprintf('The interpolation is\n');
+disp(d)
+z=input('The interpolation value:');
+h=abs(x(2)-x(1));
+u=(z-x(n))/h;
+prod=1;
+sum=y(n);
+le=length(y)-1;
+for i=1:le
+    prod=prod*(u+i-1);
+    sum=sum+(prod*d(n, i+1))/factorial(i);
+end
+fprintf('The interpolation of %.2f is %.4f', z, sum);
+%graph of the function
+plot(x,y, ':r', 'Linewidth', 2.5)
+hold on
+plot(z, sum, 'ok', 'Linewidth', 1.5)
+grid on
+%legend('Data Given', 'Interpolation value', 'northwest');
+xlabel('x-axis', 'Fontsize',2)
+ylabel('y-axis', 'Fontsize', 12)

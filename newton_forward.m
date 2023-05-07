@@ -1,5 +1,5 @@
 clc
-all clear
+clear all
 clear fig
 x=[1891 1901 1911 1921 1931];
 y=[46 66 81 93 101];
@@ -8,6 +8,7 @@ for i=1:m
     dt(i,1)=x(i);
     dt(i,2)=y(i);
 end
+disp(dt)
 n=m-1;
 for j=3:m+1
     for i=1:n
