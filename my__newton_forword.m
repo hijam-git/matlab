@@ -26,11 +26,17 @@ u= (z-x(1))/h;
 
 term=1;
 sum= y(1);
-le=length(y)-1;
+le=m-1;
 for i=1:le
     term=term*(u-i+1);
     sum=sum+(term*dt(1,i+2)/factorial(i));
 end
 disp(sum);
+
+plot(x,y,  'Linewidth', 2.5)
+hold on
+plot(z,sum, 'ok', 'Linewidth', 2.5)
+xlabel('xaxis');
+ylabel('yaxis');
 
 

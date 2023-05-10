@@ -27,3 +27,10 @@ for i=1:le
     sum=sum+(term*dt(n,i+2)/factorial(i));
 end
 disp(sum);
+
+
+plot(x,y,':r', 'LineWidth', 2.5);
+hold on
+plot(z,sum, 'ok', 'LineWidth', 2.5);
+xlabel('xaxis');
+ylabel('yaxis');

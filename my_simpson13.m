@@ -1,8 +1,7 @@
 clc
 clear all
 disp("__input__");
-%f=@(x) 1./(1+x.^2);
-f=@(x) (2*x)./(3*x+x^3);
+f=@(x) 1./(1+x.^2);
 a=input("give lower limit ");
 b=input("give uper limit ");
 n=input("give number of separation ");
@@ -17,15 +16,7 @@ for i=1:(n-1)
 end
 total = (h/3)*(f(a)+f(b)+S);
 disp(total);
-%{
-for i=1:2:(n-1)
-    S=S+f(a+i*h);
-end
-s=0;
-for i=2:2:(n-1)
-    s=s+f(a+i*h);
-end
-%}
+
 
 
 
